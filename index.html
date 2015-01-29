@@ -1,0 +1,1715 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>CSS3 介绍</title>
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/-webkit-transition.css" />
+<link rel="stylesheet" href="css/-moz-transition.css" />
+<link rel="alternate stylesheet" href="css/dark.css" title="dark" disabled />
+<script src="js/prettify.js"></script>
+<script src="js/lang-css.js"></script>
+<!--[if lt IE 9]><script src="js/html5shiv.js"></script><![endif]-->
+<script>
+function $(s, c) {
+	return (c || document).querySelector(s);
+};
+function $all(s, c) {
+	return (c || document).querySelectorAll(s);
+};
+</script>
+<style>
+.wrap{display:-webkit-box; display:-moz-box; display:-ms-box; display:-o-box; display:box; -webkit-box-orient:horizontal; -moz-box-orient:horizontal; -ms-box-orient:horizontal; -o-box-orient:horizontal; box-orient:horizontal; border:1px solid #555; min-height:150px; width:100%; text-shadow:none}
+.wrap div{padding:10px; color:#000}
+.box1{background:#fcc}
+.box2{background:#cfc}
+.box3{background:#ccf}
+.f .box1, 
+.f .box2, 
+.f .box3{-webkit-box-flex:1; -moz-box-flex:1; -ms-box-flex:1; -o-box-flex:1; box-flex:1}
+
+.none-type{list-style:none}
+.none-type input{margin-right:1em}
+:checked+span{color:red}
+
+.bdrs{width:200px; height:200px; margin:0 auto; border-radius:20px; background:skyblue; border:4px solid #333}
+[type=range]{width:70%}
+
+.gbox{width:100%; height:150px; border:1px solid #333; color:#000}
+
+.boxba{border:2px solid #333; height:200px; overflow:auto; background:url(res/icon.png) no-repeat 50% top}
+.boxbb{border:2px solid #333; height:240px; background:url(res/icon.png) no-repeat 0 0}
+.boxbc{border:10px solid rgba(0,0,0,.5); padding:20px; height:160px; background:url(res/icon.png) no-repeat 0 0}
+.boxbd{border:10px solid rgba(0,0,0,.5); padding:20px; height:120px; background:url(res/icon.png) no-repeat 0 0}
+.boxbe{border:10px solid rgba(0,0,0,.5); padding:20px; height:80px; background:url(res/icon.png) no-repeat 0 0; background-origin:border-box; background-size:64px}
+
+.coding{ margin-top:20px;  font-size:30px;  width:100%;  height:280px; font-family:'courier new',courier,monospace}
+
+.balls{list-style:none}
+.balls li{float:left; width:68px; height:68px; line-height:68px; text-align:center; -webkit-box-shadow:inset 0 0 0 3px rgba(0,0,0,.2);-moz-box-shadow:inset 0 0 0 3px rgba(0,0,0,.2);box-shadow:inset 0 0 0 3px rgba(0,0,0,.2); -webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%; margin-right:20px; color:#333; background:#ccc; text-shadow:0 1px 2px rgba(0,0,0,.2);color:#fff;font-family:arial;font-weight:600;}
+
+.balls li:only-child, 
+.balls.f :first-child, 
+.balls.l :last-child,
+.balls.lt4 li:nth-child(-n+4),
+.balls.n4 li:nth-child(4n-3){ background:red }
+
+.test, .test div, .test p{border:4px solid #ccc; padding:.2em; margin:.2em}
+
+.test2 :checked+span{color:#666}
+
+pre.exampletf{width:300px;height:300px;background:#2E79BB;margin:0 auto;color:#fff;text-shadow:none;font-size:40px;padding:1em}
+pre.exampletf .pun,
+pre.exampletf .lit{color:#fff}
+
+.examplegd{width:100px;height:100px;background:#2E79BB;
+-webkit-transition:all ease-in .5s;
+-moz-transition:all ease-in .5s;
+-o-transition:all ease-in .5s;
+transition:all ease-in .5s;
+}
+
+#examplegd1:hover{
+	-webkit-transform:scale(2);
+	-moz-transform:scale(2);
+	-o-transform:scale(2);
+	transform:scale(2);
+}
+
+.gdtf .examplegd{
+	width: 70px;
+	height:70px;
+	-webkit-transition:all ease-in 1s;
+	-moz-transition:all ease-in 1s;
+	-o-transition:all ease-in 1s;
+	transition:all ease-in 1s;
+}
+.gdtf:hover .examplegd{
+	-webkit-transform:translateX(900%) rotate(1turn);
+	-moz-transform:translateX(900%) rotate(1turn);
+	-o-transform:translateX(900%) rotate(1turn);
+	transform:translateX(900%) rotate(1turn);
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	background:red;
+}
+
+.exampledh{
+	width: 100%;
+	height: 1em;
+	background: silver;
+}
+.exampledh i{
+	width: 1%;
+	background: green;
+	display:inline-block;
+	height:100%;
+}
+.exampledh:hover i{
+	 -webkit-animation: loading-example 3s ease-out infinite;
+	 -moz-animation: loading-example 3s ease-out infinite;
+	 -o-animation: loading-example 3s ease-out infinite;
+	 animation: loading-example 3s ease-out infinite;
+	 -webkit-animation-direction:alternate;
+}
+@-webkit-keyframes loading-example{
+    0%{ width: 0 }
+    100%{ width: 100% }
+}
+@-moz-keyframes loading-example{
+    0%{ width: 0 }
+    100%{ width: 100% }
+}
+@-o-keyframes loading-example{
+    0%{ width: 0 }
+    100%{ width: 100% }
+}
+@keyframes loading-example{
+    0%{ width: 0 }
+    100%{ width: 100% }
+}
+</style>
+<style type="text/css" id="sstyle1"></style>
+<style type="text/css" id="sstyle2"></style>
+<style type="text/css" id="sstyle3"></style>
+<style type="text/css" id="sstyle4"></style>
+</head>
+<body class="unload">
+
+<section id="slides">
+
+<article data-section>
+	<div class="box">
+		<img src="res/logo.png" alt="CSS3 Logo" style="-webkit-box-reflect:below -30px -webkit-linear-gradient(transparent 80%,rgba(255,255,255,.3))" />
+		<h1>CSS3 介绍</h1>
+	</div>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Flexible Box Layout</small>
+		<h2>弹性盒模型</h2>
+	</div>
+</article>
+
+<article>
+	<h3>display: box</h3>
+	<p>特点：</p>
+	<ul>
+		<li>等高(宽)的栏目</li>
+		<li>独立的元素顺序</li>
+		<li>指定元素之间的关系</li>
+		<li>灵活的尺寸和对齐方式</li>
+	</ul>
+<pre class="prettyprint smaller">
+&lt;div class=&quot;wrap&quot;&gt;
+    &lt;div class=&quot;box1&quot;&gt;1&lt;/div&gt;
+    &lt;div class=&quot;box2&quot;&gt;2&lt;/div&gt;
+    &lt;div class=&quot;box3&quot;&gt;3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</article>
+
+<article>
+	<h3>box-orient</h3>
+	<p>设置弹性盒模型对象的子元素的排列方式。</p>
+	<h5>取值：</h5>
+	<ul class="none-type">
+		<li><label><input type="radio" name="box-orient" value="horizontal" checked /><span>horizontal(默认)</span></label></li>
+		<li><label><input type="radio" name="box-orient" value="vertical" /><span>vertical</span></label></li>
+	</ul>
+<div class="wrap" id="example1">
+    <div class="box1">1</div>
+    <div class="box2">2</div>
+    <div class="box3">3</div>
+</div>
+<script>
+var els = $all("[name=box-orient]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		$("#example1").style.WebkitBoxOrient = $("#example1").style.MozBoxOrient = $("#example1").style.boxOrient = this.value;
+	}
+}
+</script>
+</article>
+
+<article>
+	<h3>box-pack</h3>
+	<p>设置弹性盒模型对象的子元素的排列方式。</p>
+	<h5>取值：</h5>
+	<ul class="none-type">
+		<li><label><input type="radio" name="box-pack" value="start" checked /><span>start(默认)</span></label></li>
+		<li><label><input type="radio" name="box-pack" value="center" /><span>center</span></label></li>
+		<li><label><input type="radio" name="box-pack" value="end" /><span>end</span></label></li>
+		<li><label><input type="radio" name="box-pack" value="justify" /><span>justify</span></label></li>
+	</ul>
+	<div class="wrap" id="example2">
+		<div class="box1">1</div>
+		<div class="box2">2</div>
+		<div class="box3">3</div>
+	</div>
+<script>
+var els = $all("[name=box-pack]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		$("#example2").style.WebkitBoxPack = $("#example2").style.MozBoxPack = $("#example2").style.boxPack = this.value;
+	}
+}
+</script>
+</article>
+
+<article>
+	<h3>box-align</h3>
+	<p>设置弹性盒模型对象的子元素的排列方式。</p>
+	<h5>取值：</h5>
+	<ul class="none-type">
+		<li><label><input type="radio" name="box-align" value="start" checked /><span>start</span></label></li>
+		<li><label><input type="radio" name="box-align" value="center" /><span>center</span></label></li>
+		<li><label><input type="radio" name="box-align" value="end" /><span>end</span></label></li>
+		<li><label><input type="radio" name="box-align" value="baseline" /><span>baseline</span></label></li>
+		<li><label><input type="radio" name="box-align" value="stretch" /><span>stretch(默认)</span></label></li>
+	</ul>
+	<div class="wrap" id="example3" style="-webkit-box-orient:vertical;-moz-box-orient:vertical;box-orient:vertical">
+		<div class="box1">1</div>
+		<div class="box2">2</div>
+		<div class="box3">3</div>
+	</div>
+<script>
+var els = $all("[name=box-align]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		$("#example3").style.WebkitBoxAlign = $("#example3").style.MozBoxAlign = $("#example3").style.boxAlign = this.value;
+	};
+};
+</script>
+</article>
+
+<article>
+	<h3>box-flex</h3>
+	<p>设置弹性盒模型对象的子元素如何分配其剩余空间。</p>
+	<h5>取值：<span class="green">&lt;number&gt;</span></h5>
+	<ul class="none-type">
+		<li><label><input type="radio" name="box-flex" value="1|-|-" /><span>1 | - | -</span></label></li>
+		<li><label><input type="radio" name="box-flex" value="1|1|1" /><span>1 | 1 | 1</span></label></li>
+		<li><label><input type="radio" name="box-flex" value="1|2|1" /><span>1 | 2 | 1</span></label></li>
+		<li><label><input type="radio" name="box-flex" value="2|3|5" /><span>2 | 3 | 5</span></label></li>
+	</ul>
+	<div class="wrap" id="example4">
+		<div class="box1">1</div>
+		<div class="box2">2</div>
+		<div class="box3">3</div>
+	</div>
+<script>
+var els = $all("[name=box-flex]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		var vs = this.value.split("|");
+		$("#example4 .box1").style.WebkitBoxFlex = $("#example4 .box1").style.MozBoxFlex = $("#example4 .box1").style.boxFlex = vs[0] == "-" ? "" : vs[0];
+		$("#example4 .box2").style.WebkitBoxFlex = $("#example4 .box2").style.MozBoxFlex = $("#example4 .box2").style.boxFlex = vs[1] == "-" ? "" : vs[1];
+		$("#example4 .box3").style.WebkitBoxFlex = $("#example4 .box3").style.MozBoxFlex = $("#example4 .box3").style.boxFlex = vs[2] == "-" ? "" : vs[2];
+	}
+}
+</script>
+</article>
+
+<article>
+	<h3>box-ordinal-group</h3>
+	<p>设置弹性盒模型对象的子元素的显示顺序。</p>
+	<h5>取值：<span class="green">&lt;integer&gt;</span></h5>
+	<ul class="none-type">
+		<li><label><input type="radio" name="box-ordinal-group" value="1|1|1" checked /><span>默认</span></label></li>
+		<li><label><input type="radio" name="box-ordinal-group" value="1|3|2" /><span>1 | 3 | 2</span></label></li>
+		<li><label><input type="radio" name="box-ordinal-group" value="3|1|1" /><span>3 | 1 | 2</span></label></li>
+		<li><label><input type="radio" name="box-ordinal-group" value="3|1|1" /><span>3 | 1 | 1</span></label></li>
+	</ul>
+	<div class="wrap f" id="example5">
+		<div class="box1">1</div>
+		<div class="box2">2</div>
+		<div class="box3">3</div>
+	</div>
+<script>
+var els = $all("[name=box-ordinal-group]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		var vs = this.value.split("|");
+		$("#example5 .box1").style.WebkitBoxOrdinalGroup = $("#example5 .box1").style.MozBoxOrdinalGroup = $("#example5 .box1").style.boxOrdinalGroup = vs[0];
+		$("#example5 .box2").style.WebkitBoxOrdinalGroup = $("#example5 .box2").style.MozBoxOrdinalGroup = $("#example5 .box2").style.boxOrdinalGroup = vs[1];
+		$("#example5 .box3").style.WebkitBoxOrdinalGroup = $("#example5 .box3").style.MozBoxOrdinalGroup = $("#example5 .box3").style.boxOrdinalGroup = vs[2];
+	}
+}
+</script>
+</article>
+
+<article>
+	<h3>box-direction</h3>
+	<p>设置弹性盒模型对象的子元素的排列顺序是否反转。</p>
+	<h5>取值：</h5>
+	<ul class="none-type">
+		<li><label><input type="radio" name="box-direction" value="normal" checked /><span>normal(默认)</span></label></li>
+		<li><label><input type="radio" name="box-direction" value="reverse" /><span>reverse</span></label></li>
+	</ul>
+	<div class="wrap f" id="example6">
+		<div class="box1">1</div>
+		<div class="box2">2</div>
+		<div class="box3">3</div>
+	</div>
+<script>
+var els = $all("[name=box-direction]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		$("#example6").style.WebkitBoxDirection = $("#example6").style.MozBoxDirection = $("#example6").style.boxDirection = this.value;
+	}
+}
+</script>
+</article>
+
+<article>
+	<h3>box-lines</h3>
+	<p>设置弹性盒模型对象的子元素是否可以换行显示。</p>
+	<h5>取值：</h5>
+	<p><span class="red">single(默认)</span> | <span>multiple</span></p>
+	<hr />
+	<h3>box-flex-group</h3>
+	<p>设置弹性盒模型对象的子元素的所属组。</p>
+	<h5>取值：<span class="green">&lt;integer&gt;</span></h5>
+	<hr />
+	<p class="orange">PS: 以上2个目前都未实现</p>
+</article>
+
+
+<article data-section>
+	<div class="box">
+		<small>Border</small>
+		<h2>边框</h2>
+	</div>
+</article>
+
+<article>
+	<h3>border-radius <small class="gray normal">( 圆角 )</small></h3>
+	<h5>基本语法：<span class="green">水平与垂直半径相同时</span></h5>
+<pre class="prettyprint lang-css" id="p1">
+border-radius: 10px;
+</pre>
+<div class="bdrs" id="examplebdrs1"></div>
+
+<p class="aligncenter">
+长度值：<input type="range" max="100" min="0" value="20" id="b1" />
+</p>
+<p class="aligncenter">
+百分比：<input type="range" max="50" min="0" value="0" id="b2" />
+</p>
+
+<script>
+$("#b1").onchange = function (){
+	$("#examplebdrs1").style.borderRadius = $("#p1 .lit").innerHTML = this.value + "px";
+};
+$("#b2").onchange = function (){
+	$("#examplebdrs1").style.borderRadius = $("#p1 .lit").innerHTML = this.value + "%";
+};
+</script>
+</article>
+
+<article>
+	<h3>border-radius <small class="gray normal">( 圆角边框 )</small></h3>
+	<h5>基本语法：<span class="green">水平与垂直半径相同时</span></h5>
+	<br />
+	<p>
+		<div class="bdrs to-build" style="width:90%;height:100px;border-radius: 10px 30px">
+			<pre class="prettyprint" style="background:none;border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:10px">border-radius: 10px 30px</pre>
+		</div>
+	</p>
+	<p>
+		<div class="bdrs to-build" style="width:90%;height:100px;border-radius: 10px 30px 50px">
+			<pre class="prettyprint" style="background:none;border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:10px">border-radius: 10px 30px 50px</pre>
+		</div>
+	</p>
+	<p>
+		<div class="bdrs to-build" style="width:90%;height:100px;border-radius: 10px 30px 70px 50px">
+			<pre class="prettyprint" style="background:none;border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:10px">border-radius: 10px 30px 70px 50px</pre>
+		</div>
+	</p>
+</article>
+
+<article>
+	<h3>border-radius <small class="gray normal">( 圆角边框 )</small></h3>
+	<h5>基本语法：<span class="green">水平与垂直半径不同时</span></h5>
+	<pre class="prettyprint lang-css">border-radius: 水平半径{1,4} / 垂直半径{1,4}</pre>
+	<p>
+		<div class="bdrs to-build" style="width:90%;height:100px;border-radius: 60px / 30px">
+			<pre class="prettyprint lang-css" style="background:none;border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:10px">border-radius: 60px / 30px</pre>
+		</div>
+	</p>
+	<p>
+		<div class="bdrs to-build" style="width:90%;height:100px;border-radius: 10px 50px / 20px 40px 60px 80px">
+			<pre class="prettyprint lang-css smaller" style="background:none;border:none;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;margin:10px">border-radius: 10px 50px / 20px 40px 60px 80px</pre>
+		</div>
+	</p>
+</article>
+
+<article>
+	<h3>border-radius <small class="gray normal">( 圆角边框 )</small></h3>
+	<h5>拆分语法：</h5>
+
+<pre class="prettyprint lang-css">
+border-top-left-radius: 20px;
+border-top-right-radius: 80px 40px;
+border-bottom-left-radius: 30px;
+border-bottom-right-radius: 70px;
+</pre>
+
+<div class="bdrs" style="border-top-left-radius:20px;border-top-right-radius:80px 40px;border-bottom-left-radius:30px;border-bottom-right-radius:70px;"></div>
+</article>
+
+<article>
+	<h3>✍画个鸡蛋？</h3>
+	<br /><br />
+	<div class="bdrs" style="background:wheat;height:230px;-webkit-border-radius:50%/65% 65% 35% 35%;-moz-border-radius:50%/65% 65% 35% 35%;border-radius:50%/65% 65% 35% 35%"></div>
+<pre class="prettyprint lang-css to-build">
+border-radius: 50% / 65% 65% 35% 35%;
+</pre>
+</article>
+
+<article>
+	<h3>border-image <small class="gray normal">( 图像边框 )</small></h3>
+
+<div style="position:absolute;top:20px;right:20px;background:#fff url(res/border.png);width:81px;height:81px;border:2px solid #ddd" id="bdimg" class="fl-r" onclick="this.style.zoom=this.style.zoom==2?1:2">
+<div class="t" style="height:2px;width:100%;position:absolute;top:27px;left:0;background:purple"></div>
+<div class="l" style="width:2px;height:100%;position:absolute;top:0;left:27px;background:purple"></div>
+<div class="r" style="width:2px;height:100%;position:absolute;top:0;right:27px;background:purple"></div>
+<div class="b" style="height:2px;width:100%;position:absolute;bottom:27px;left:0;background:purple"></div>
+</div>
+
+<br class="clr"/>
+
+<p class="aligncenter">
+<pre class="prettyprint lang-css smaller" style="margin:0 auto;width:700px;height:200px;overflow:auto;resize:auto" id="bi">
+border-image:url(res/border.png) 27 27 27 27 / 27px 27px 27px 27px repeat
+</pre>
+</p>
+
+<div class="smaller-x aligncenter">
+	<div class="fl-l" style="width:50%;margin-bottom:2em">
+		<h6>裁剪区域：</h6>
+		<div>上：<input type="range" max="50" min="0" value="27" id="bct" style="width:30%" /></div>
+		<div>右：<input type="range" max="50" min="0" value="27" id="bcr" style="width:30%" /></div>
+		<div>下：<input type="range" max="50" min="0" value="27" id="bcb" style="width:30%" /></div>
+		<div>左：<input type="range" max="50" min="0" value="27" id="bcl" style="width:30%" /></div>
+	</div>
+	<div class="fl-l" style="width:50%;margin-bottom:2em">
+		<h6>边框宽度：</h6>
+		<div>上：<input type="range" max="50" min="0" value="27" id="bbt" style="width:30%" /></div>
+		<div>右：<input type="range" max="50" min="0" value="27" id="bbr" style="width:30%" /></div>
+		<div>下：<input type="range" max="50" min="0" value="27" id="bbb" style="width:30%" /></div>
+		<div>左：<input type="range" max="50" min="0" value="27" id="bbl" style="width:30%" /></div>
+	</div>
+	<div class="aligncenter clr">
+		填充方式：
+		<label><input type="radio" name="border-image" value="stretch" /><span>stretch(默认)</span></label>
+		<label><input type="radio" name="border-image" value="repeat" checked /><span>repeat</span></label>
+		<label><input type="radio" name="border-image" value="round" /><span>round</span></label>
+	</div>
+</div>
+
+<script>
+updateB();
+function updateB(){
+	$("#bi").style.WebkitBorderImage = $("#bi").style.MozBorderImage = $("#bi").style.OBorderImage = $("#bi").style.borderImage = $("#bi").textContent.split(":")[1];
+}
+$("#bct").onchange = function (){ $all("#bi .lit")[0].innerHTML=this.value; $("#bdimg .t").style.top=this.value+"px"; updateB() };
+$("#bcr").onchange = function (){ $all("#bi .lit")[1].innerHTML=this.value; $("#bdimg .r").style.right=this.value+"px"; updateB() };
+$("#bcb").onchange = function (){ $all("#bi .lit")[2].innerHTML=this.value; $("#bdimg .b").style.bottom=this.value+"px"; updateB() };
+$("#bcl").onchange = function (){ $all("#bi .lit")[3].innerHTML=this.value; $("#bdimg .l").style.left=this.value+"px"; updateB() };
+
+$("#bbt").onchange = function (){ $all("#bi .lit")[4].innerHTML=this.value+"px"; updateB() };
+$("#bbr").onchange = function (){ $all("#bi .lit")[5].innerHTML=this.value+"px"; updateB() };
+$("#bbb").onchange = function (){ $all("#bi .lit")[6].innerHTML=this.value+"px"; updateB() };
+$("#bbl").onchange = function (){ $all("#bi .lit")[7].innerHTML=this.value+"px"; updateB() };
+
+var els = $all("[name=border-image]");
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		$all("#bi .pln")[$all("#bi .pln").length-1].innerHTML = " " + this.value;
+		 updateB();
+	}
+}
+</script>
+
+</article>
+
+
+<article>
+	<h3>box-shadow <small class="gray normal">( 盒阴影 )</small></h3>
+
+<pre class="prettyprint lang-css larger-x" style="word-wrap:normnal;-webkit-box-shadow:0 5px 20px 0 red;-moz-box-shadow:0 5px 20px 0 red;box-shadow:0 5px 20px 0 red" id="ebs">
+box-shadow: 0 5px 20px 0 red
+</pre>
+
+<p class="aligncenter to-build">水平偏移：<input type="range" max="50" min="0" value="0" id="bsx" /></p>
+<p class="aligncenter to-build">垂直偏移：<input type="range" max="50" min="0" value="5" id="bsy" /></p>
+<p class="aligncenter to-build">模糊半径：<input type="range" max="50" min="0" value="20" id="bss" /></p>
+<p class="aligncenter to-build">阴影扩展：<input type="range" max="50" min="0" value="0" id="bsw" /></p>
+<p class="aligncenter to-build"><label><input type="checkbox" id="bsi" value=" inset "/> 内阴影</label></p>
+
+<script>
+updateBs();
+function updateBs(){
+	$("#ebs").style.WebkitBoxShadow = $("#ebs").style.MozBoxShadow = $("#ebs").style.boxShadow = $("#ebs").textContent.split(":")[1];
+}
+$("#bsx").onchange = function (){ $all("#ebs .lit")[0].innerHTML=this.value + "px"; updateBs() };
+$("#bsy").onchange = function (){ $all("#ebs .lit")[1].innerHTML=this.value + "px"; updateBs() };
+$("#bss").onchange = function (){ $all("#ebs .lit")[2].innerHTML=this.value + "px"; updateBs() };
+$("#bsw").onchange = function (){ $all("#ebs .lit")[3].innerHTML=this.value + "px"; updateBs() };
+
+$("#bsi").onclick = function (){ $all("#ebs .pln")[0].innerHTML= $all("#ebs .pln")[0].innerHTML==" " ? this.value: " "; updateBs() };
+</script>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Gradient</small>
+		<h2>渐变</h2>
+	</div>
+</article>
+
+
+<article>
+<h3>linear-gradient() <span class="gray">(线性渐变)</span></h3>
+<div class="gbox" style="background:-webkit-linear-gradient(red,green);background:-moz-linear-gradient(red,green);background:-o-linear-gradient(red,green);background:linear-gradient(red,green)"></div>
+	<ul class="none-type">
+		<li><label><input type="radio" name="linear-gradient" value="linear-gradient(red,green)" checked /><span>linear-gradient(red, green)</span></label></li>
+		<li class="to-build"><label><input type="radio" name="linear-gradient" value="linear-gradient(red 20%,blue 80%,green)" /><span>linear-gradient(red 20%, blue 80%, green)</span></label></li>
+		<li class="to-build"><label><input type="radio" name="linear-gradient" value="linear-gradient(top,red 50px,green 50px)" /><span>linear-gradient(top, red 50px, green 50px)</span></label></li>
+		<ul class="to-build">
+			方向：
+			<label><input type="radio" name="lgrp" value="top" checked /><span>top(默认)</span></label>
+			<label><input type="radio" name="lgrp" value="right" /><span>right</span></label>
+			<label><input type="radio" name="lgrp" value="bottom" /><span>bottom</span></label>
+			<label><input type="radio" name="lgrp" value="left" /><span>left</span></label>
+		</ul>
+		<li class="to-build"><label><input type="radio" name="linear-gradient" value="linear-gradient(45deg,red,blue,green)" /><span>linear-gradient(45deg, red, blue, green)</span></label></li>
+		<ul class="to-build">角度：<input type="range" max="360" min="-360" value="45" id="lgr1" /></ul>
+	</ul>
+</p>
+<script>
+var els = $all("[name=linear-gradient]");
+var elsr = $all("[name=lgrp]");
+
+for(var i=0;i<elsr.length;i++){
+	elsr[i].onclick = function (){
+		els[2].value = els[2].nextSibling.innerHTML = els[2].value.replace(/(left|right|bottom|left)/g, this.value);
+		$(".gbox").style.background = "-webkit-" + els[2].value;
+		$(".gbox").style.background = "-moz-" + els[2].value;
+		$(".gbox").style.background = "-o-" + els[2].value;
+		$(".gbox").style.background = els[2].value;
+	};
+};
+
+for(var i=0;i<els.length;i++){
+	els[i].onclick = function (){
+		$(".gbox").style.background = "-webkit-" + this.value;
+		$(".gbox").style.background = "-moz-" + this.value;
+		$(".gbox").style.background = "-o-" + this.value;
+		$(".gbox").style.background = this.value;
+	}
+};
+$("#lgr1").onchange = function (){
+	els[3].value = els[3].nextSibling.innerHTML = els[3].value.replace(/(-)?\d+/g, this.value);
+	$(".gbox").style.background = "-webkit-" + els[3].value;
+	$(".gbox").style.background = "-moz-" + els[3].value;
+	$(".gbox").style.background = "-o-" + els[3].value;
+	$(".gbox").style.background = els[3].value;
+};
+</script>
+</article>
+
+<article>
+<h3>radial-gradient() <span class="gray">( 径向渐变 )</span></h3>
+<div class="gbox gbox2" style="background:-webkit-radial-gradient(center, red, yellow 10%, #1E90FF 50%, white);background:-moz-radial-gradient(red, yellow 10%, #1E90FF 50%, white);background:-o-radial-gradient(red, yellow 10%, #1E90FF 50%, white);background:radial-gradient(red, yellow 10%, #1E90FF 50%, white)"></div>
+	<ul class="none-type smaller">
+		<li><label><input type="radio" name="radial-gradient" value="radial-gradient(red, yellow 10%, #1E90FF 50%, white)" checked /><span>radial-gradient(red, yellow 10%, #1E90FF 50%, white)</span></label></li>
+		<li class="to-build"><label><input type="radio" name="radial-gradient" value="radial-gradient(20px 100%,red, yellow 10%, #1E90FF 50%, white)" checked /><span>radial-gradient(20px 100%, red, yellow 10%, #1E90FF 50%, white)</span></label></li>
+		<li class="to-build"><label><input type="radio" name="radial-gradient" value="radial-gradient(center, circle, red, yellow 10%, #1E90FF 50%, white)" checked /><span>radial-gradient(center, circle, red, yellow 10%, #1E90FF 50%, white)</span></label></li>
+		<ul class="to-build">
+			形状：
+			<label><input type="radio" name="lgrs" value="circle" checked /><span>circle</span></label>
+			<label><input type="radio" name="lgrs" value="ellipse" /><span>ellipse</span></label>
+		</ul>
+		<li class="to-build"><label><input type="radio" name="radial-gradient" value="radial-gradient(20%, circle closest-side, red, yellow 10%, #1E90FF 50%, white)" checked /><span>radial-gradient(20%, circle closest-side, red, yellow 10%, #1E90FF 50%, white)</span></label></li>
+		<ul class="to-build">
+			距离：
+			<label><input type="radio" name="rgsize" value="closest-side" checked /><span>closest-side/contain</span></label>
+			<label><input type="radio" name="rgsize" value="closest-corner" /><span>closest-corner</span></label>
+			<label><input type="radio" name="rgsize" value="farthest-side" /><span>farthest-side</span></label>
+			<label><input type="radio" name="rgsize" value="farthest-corner" /><span>farthest-corner/cover</span></label>
+		</ul>
+		<ul class="to-build">
+			半径：
+			<label><input type="radio" name="rgsizes" value="100px 25%" /><span>100px 25%</span></label>
+			<label><input type="radio" name="rgsizes" value="33% 33%" /><span>33% 33%</span></label>
+		</ul>
+	</ul>
+</p>
+<script>
+var els_rg = $all("[name=radial-gradient]");
+
+var elsrs = $all("[name=lgrs]");
+for(var i=0;i<elsrs.length;i++){
+	elsrs[i].onclick = function (){
+		els_rg[2].value = els[2].nextSibling.innerHTML = els_rg[2].value.replace(/(circle|ellipse)/g, this.value);
+		$(".gbox2").style.background = "-webkit-" + els_rg[2].value;
+		$(".gbox2").style.background = "-moz-" + els_rg[2].value;
+		$(".gbox2").style.background = "-o-" + els_rg[2].value;
+		$(".gbox2").style.background = els_rg[2].value;
+	};
+};
+
+var elsrp = $all("[name=rgsize]");
+for(var i=0;i<elsrp.length;i++){
+	elsrp[i].onclick = function (){
+		els_rg[3].value = els_rg[3].nextSibling.innerHTML = els_rg[3].value.replace(/(closest-side|closest-corner|farthest-side|farthest-corner)/g, this.value);
+		$(".gbox2").style.background = "-webkit-" + els_rg[3].value;
+		$(".gbox2").style.background = "-moz-" + els_rg[3].value;
+		$(".gbox2").style.background = els_rg[3].value;
+	};
+};
+
+var elsrss = $all("[name=rgsizes]");
+for(var i=0;i<elsrss.length;i++){
+	elsrss[i].onclick = function (){
+		els_rg[3].value = els_rg[3].nextSibling.innerHTML = els_rg[3].value.replace(els_rg[3].value.split(",")[1], " " + this.value);
+		$(".gbox2").style.background = "-webkit-" + els_rg[3].value;
+		$(".gbox2").style.background = "-moz-" + els_rg[3].value;
+		$(".gbox2").style.background = "-o-" + els_rg[3].value;
+		$(".gbox2").style.background = els_rg[3].value;
+	}
+}
+
+for(var i=0;i<els_rg.length;i++){
+	els_rg[i].onclick = function (){
+		$(".gbox2").style.background = "-webkit-" + this.value;
+		$(".gbox2").style.background = "-moz-" + this.value;
+		$(".gbox2").style.background = "-o-" + this.value;
+		$(".gbox2").style.background = this.value;
+	};
+};
+</script>
+</article>
+
+<article>
+<h3>repeating-linear-gradient()<br /><span class="gray">( 重复线性渐变 )</h3>
+<div class="gbox gbox2" style="background:-webkit-repeating-linear-gradient(-90deg,#fff, olive 20%);background:-moz-repeating-linear-gradient(-90deg,#fff, olive 20%);background:-o-repeating-linear-gradient(-90deg,#fff, olive 20%);background:repeating-linear-gradient(-90deg,#fff, olive 20%)">repeating-linear-gradient(-90deg,#fff, olive 20%)</div>
+<hr />
+<h3>repeating-radial-gradient()<br /><span class="gray">( 重复径向渐变 )</span></h3>
+<div class="gbox gbox2" style="background:-webkit-repeating-radial-gradient(circle cover,#fff,orange 20%);background:-moz-repeating-radial-gradient(circle cover,#fff,orange 20%);background:-o-repeating-radial-gradient(circle cover,#fff,orange 20%);background:repeating-radial-gradient(circle cover,#fff,orange 20%)">repeating-radial-gradient(circle cover,#fff,orange 20%)</div>
+</article>
+
+<article>
+	<h3>✍画条彩虹？</h3>
+	<br />
+	<div class="gbox gbox2" style="height:200px;
+background-image:-webkit-radial-gradient(50% 110%,ellipse farthest-side,white 56%,#FF4D4D 59%,#FFA64D 62%,#FFDC73 65%,#93FF26 68%,#4DFFFF 71%,#2693FF 74%,#D24DFF 77%,white 80%);
+background-image:-moz-radial-gradient(50% 110%,ellipse farthest-side,white 56%,#FF4D4D 59%,#FFA64D 62%,#FFDC73 65%,#93FF26 68%,#4DFFFF 71%,#2693FF 74%,#D24DFF 77%,white 80%);
+background-image:-o-radial-gradient(50% 110%,ellipse farthest-side,white 56%,#FF4D4D 59%,#FFA64D 62%,#FFDC73 65%,#93FF26 68%,#4DFFFF 71%,#2693FF 74%,#D24DFF 77%,white 80%);
+background-image:radial-gradient(50% 110%,ellipse farthest-side,white 51.7%,#FF4D4D 52%,#FF4D4D 55.7%,#FFA64D 56%,#FFA64D 59.7%,#FFDC73 60%,#FFDC73 63.7%,#93FF26 64%,#93FF26 67.7%,#4DFFFF 68%,#4DFFFF 71.7%,#2693FF 72%,#2693FF 75.7%,#D24DFF 76%,#D24DFF 79%,white 79.7%)"></div>
+<pre class="prettyprint lang-css smaller to-build">
+background-image: -webkit-radial-gradient(
+  50% 110%,    ellipse farthest-side,
+  white 56%,   #FF4D4D 59%, #FFA64D 62%, #FFDC73 65%,
+  #93FF26 68%, #4DFFFF 71%, #2693FF 74%, #D24DFF 77%,
+  white 80%);
+</pre>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Background</small>
+		<h2>背景</h2>
+	</div>
+</article>
+
+<article>
+	<h3>background-image</h3>
+	<ul class="smaller">
+		<li><span class="green">none</span>：无背景图像。</li>
+		<li><span class="green">&lt;url&gt;</span>：使用绝对或相对地址指定背景图像。</li>
+		<li><span class="green">&lt;linear-gradient&gt;</span>：使用线性渐变创建背景图像</li>
+		<li><span class="green">&lt;radial-gradient&gt;</span>：使用径向(放射性)渐变创建背景图像</li>
+		<li><span class="green">&lt;repeating-linear-gradient&gt;</span>：使用重复的线性渐变创建背景图像</li>
+		<li><span class="green">&lt;repeating-radial-gradient&gt;</span>：使用重复的径向渐变创建背景图像</li>
+	</ul>
+<pre class="prettyprint lang-css smaller">
+background: -webkit-linear-gradient(#fff, olive);
+background: -moz-linear-gradient(#fff, olive);
+background: -ms-linear-gradient(#fff, olive);
+background: -o-linear-gradient(#fff, olive);
+background: linear-gradient(#fff, olive);
+</pre>
+</article>
+
+<article>
+	<h3>background-attachment</h3>
+	<p>设置背景图像是随对象内容滚动还是固定的。</p>
+<pre class="prettyprint lang-css smaller">
+border: 2px solid #333;
+height: 200px;
+overflow: auto;
+background: url(res/icon.png) no-repeat 50% top;
+</pre>
+<table>
+	<tr>
+		<th width="33%">scroll(默认)</th>
+		<th width="33%">fixed</th>
+		<th width="33%">local(CSS3)</th>
+	</tr>
+	<tr>
+		<td>
+			<div class="boxba to-build" style="background-attachment:scroll">
+				<ul>
+					<li>001</li><li>002</li><li>003</li><li>004</li><li>005</li><li>006</li><li>007</li><li>008</li><li>009</li><li>010</li><li>011</li><li>012</li><li>013</li><li>014</li><li>015</li><li>016</li><li>017</li><li>018</li><li>019</li><li>020</li>
+				</ul>
+			</div>
+		</td>
+		<td>
+			<div class="boxba to-build" style="background-attachment:fixed">
+				<ul>
+					<li>001</li><li>002</li><li>003</li><li>004</li><li>005</li><li>006</li><li>007</li><li>008</li><li>009</li><li>010</li><li>011</li><li>012</li><li>013</li><li>014</li><li>015</li><li>016</li><li>017</li><li>018</li><li>019</li><li>020</li>
+				</ul>
+			</div>
+		</td>
+		<td>
+			<div class="boxba to-build" style="background-attachment:local">
+				<ul>
+					<li>001</li><li>002</li><li>003</li><li>004</li><li>005</li><li>006</li><li>007</li><li>008</li><li>009</li><li>010</li><li>011</li><li>012</li><li>013</li><li>014</li><li>015</li><li>016</li><li>017</li><li>018</li><li>019</li><li>020</li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>background-repeat</h3>
+	<p>设置对象的背景图像如何铺排填充。</p>
+<pre class="prettyprint lang-css smaller">
+border: 2px solid #333;
+height: 240px;
+background: url(res/icon.png) no-repeat 0 0;
+</pre>
+<table>
+	<tr>
+		<th width="33%">repeat(默认)</th>
+		<th width="33%">round(CSS3)</th>
+		<th width="33%">space(CSS3)</th>
+	</tr>
+	<tr>
+		<td>
+			<div class="boxbb to-build" style="background-repeat:repeat"></div>
+		</td>
+		<td>
+			<div class="boxbb to-build" style="background-repeat:round"></div>
+		</td>
+		<td>
+			<div class="boxbb to-build" style="background-repeat:space"></div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>background-origin</h3>
+	<p>设置对象的背景图像background-position的原点(位置)。</p>
+<pre class="prettyprint lang-css smaller">
+border: 10px solid rgba(0,0,0,.5);
+padding: 20px;
+height: 160px;
+background: url(res/icon.png) no-repeat 0 0;
+</pre>
+<table>
+	<tr>
+		<th width="33%" class="smaller">padding-box(默认)</th>
+		<th width="33%">border-box</th>
+		<th width="33%">content-box</th>
+	</tr>
+	<tr>
+		<td>
+			<div class="boxbc to-build" style="background-origin:padding-box"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbc to-build" style="background-origin:border-box"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbc to-build" style="background-origin:content-box"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>background-size</h3>
+	<p>设设置对象的背景图像的尺寸大小。</p>
+<pre class="prettyprint lang-css smaller">
+border: 10px solid rgba(0,0,0,.5);
+padding: 20px;
+height: 120px;
+background: url(res/icon.png) no-repeat 0 0;
+</pre>
+<table>
+	<tr>
+		<th width="25%" class="smaller">auto(默认)</th>
+		<th width="25%" class="smaller">50px 80%</th>
+		<th width="25%">cover</th>
+		<th width="25%">contain</th>
+	</tr>
+	<tr>
+		<td>
+			<div class="boxbd to-build" style="background-size:auto"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbd to-build" style="background-size:50px 80%"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbd to-build" style="background-size:cover"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbd to-build" style="background-size:contain"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>background-clip</h3>
+	<p>设置指定对象的背景图像向外裁剪的区域。</p>
+<pre class="prettyprint lang-css smaller">
+border: 10px solid rgba(0,0,0,.5);
+padding: 20px;
+height: 80px;
+background: url(res/icon.png) no-repeat 0 0;
+background-size: 64px;
+background-origin: border-box;
+</pre>
+<table>
+	<tr>
+		<th width="33%">padding-box</th>
+		<th width="33%" class="smaller">border-box(默认)</th>
+		<th width="33%">content-box</th>
+	</tr>
+	<tr>
+		<td>
+			<div class="boxbe to-build" style="background-clip:padding-box"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbe to-build" style="background-clip:border-box"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+		<td>
+			<div class="boxbe to-build" style="background-clip:content-box"><span style="display:block;height:100%;background:rgba(255,0,0,.5);color:#fff">content</span></div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>Multiple background</h3>
+	<p>设置对象的多重背景图像（background-color不能设置多重）。</p>
+<pre class="prettyprint lang-css smaller">
+height: 200px;
+border: 2px solid #333;
+background:url(res/logo.png) no-repeat center,
+           linear-gradient(#fff,rgba(255,255,255,.5)),
+           skyblue;
+background-size: 128px 128px, 100% 50%, 100% 100%;
+</pre>
+<div style="height:200px;border:2px solid #333;background:url(res/logo.png) no-repeat center, -webkit-linear-gradient(#fff, rgba(255,255,255,.5)) no-repeat 0 0, skyblue;background:url(res/logo.png) no-repeat center, -moz-linear-gradient(#fff, rgba(255,255,255,.5)) no-repeat 0 0, skyblue;background:url(res/logo.png) no-repeat center, -o-linear-gradient(#fff, rgba(255,255,255,.5)) no-repeat 0 0, skyblue;background:url(res/logo.png) no-repeat center, linear-gradient(#fff, rgba(255,255,255,.5)) no-repeat 0 0, skyblue;background-size:128px 128px, 100% 50%,100% 100%"></div>
+</article>
+
+
+<article data-section>
+	<div class="box">
+		<small>User Interface</small>
+		<h2>用户界面</h2>
+	</div>
+</article>
+
+<article>
+	<h3>box-sizing</h3>
+<pre class="prettyprint lang-css smaller">
+width: 200px;
+height: 200px;
+padding: 20px;
+border: 10px solid red;
+</pre>
+
+
+<table>
+	<tr>
+		<th width="50%">content-box(默认)</th>
+		<th width="50%">border-box</th>
+	</tr>
+	<tr>
+		<td>
+			<div style="margin:0 auto;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box;width:200px;height:200px;padding:20px;border:10px solid red;background:skyblue;background-clip:content-box"></div>
+		</td>
+		<td>
+			<div class="to-build" style="margin:0 auto;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:200px;height:200px;padding:20px;border:10px solid red;background:skyblue;background-clip:content-box"> </div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>resize</h3>
+	<p>设置对象是否允许用户缩放，调节元素尺寸大小。 </p>
+	<p>如果希望此属性生效，需要设置对象的overflow属性，值可以是auto,hidden或scroll。</p>
+	<table>
+		<tr>
+			<th width="25%">none(默认)</th>
+			<th width="25%">both</th>
+			<th width="25%">horizontal</th>
+			<th width="25%">vertical</th>
+		</tr>
+		<tr>
+			<td><div style="margin:0 auto;width:150px;height:150px;border:10px solid red;"></div></td>
+			<td><div style="margin:0 auto;width:150px;height:150px;border:10px solid red;overflow:auto;resize:both"></div></td>
+			<td><div style="margin:0 auto;width:150px;height:150px;border:10px solid red;overflow:auto;resize:horizontal"></div></td>
+			<td><div style="margin:0 auto;width:150px;height:150px;border:10px solid red;overflow:auto;resize:vertical"></div></td>
+		</tr>
+	</table>
+</article>
+
+<article>
+	<h3>ime-mode</h3>
+	<p>设置是否允许用户激活输入中文，韩文，日文等的输入法（IME）状态。 </p>
+	<table>
+		<tr>
+			<th width="50%">auto(默认)</th>
+			<th width="50%">disabled</th>
+		</tr>
+		<tr>
+			<td>文本框：<input type="text" style="ime-mode:auto"/></td>
+			<td>文本框：<input type="text" style="ime-mode:disabled"/></td>
+		</tr>
+	</table>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Multi-column</small>
+		<h2>多列</h2>
+	</div>
+</article>
+
+<article>
+<h3>columns</h3>
+<pre class="prettyprint lang-css" id="cspre">
+columns: 200px
+</pre>
+	<div class="smaller-x" id="cspp" style="-webkit-columns:200px;-moz-columns:200px;columns:200px;color:red">
+		<h6>7.1. The length of columns</h6>
+		<p>What happens when the 'height' property is non-auto? Are column lengths in any way constrained by the 'height' property? Two options seems possible: <br />
+Similarly, the 'max-height' and 'min-height' properties must be described.
+Another option is to create 'column-length' property.</p>
+	<h6>7.2. Absolutely positioned elements in columns</h6>
+	<p>What is the desired behaviour when an element in a column is an absolute container (e.g., relatively positioned)? In particular, do its absolutely positioned children break at column boundaries too? A similar question arises for pages and the fact that we don't currently break abs-pos children across page boundaries is a huge source of complaints, so I strongly push for abs-pos children to break at column boundaries, and I'd like as much guidance as possible as to the preferred behaviour. Do consider what happens if the in-flow content fits in N columns but additional columns would be required to fit abs-pos content.</p>
+	</div>
+
+	<p class="aligncenter">宽度：<input type="range" max="500" min="100" value="200" id="ecs1" /></p>
+	<p class="aligncenter">列数：<input type="range" max="10" min="1" value="2" id="ecs2" /></p>
+
+<script>
+$("#ecs1").onchange = function (){
+	$("#cspre .lit").innerHTML = this.value + "px";
+	$("#cspp").style.WebkitColumns = $("#cspp").style.MozColumns = $("#cspp").style.columns = $("#cspre").textContent.split(":")[1];
+};
+
+$("#ecs2").onchange = function (){
+	$("#cspre .lit").innerHTML = " " + this.value;
+	$("#cspp").style.WebkitColumns = $("#cspp").style.MozColumns = $("#cspp").style.columns = $("#cspre").textContent.split(":")[1];
+};
+</script>
+</article>
+
+<article>
+	<h3>column-width</h3>
+	<p>设置对象每列的宽度</p>
+<pre class="prettyprint lang-css">
+column-width: 200px
+</pre>
+	<hr />
+	<h3>column-count</h3>
+	<p>设置对象每列的列数</p>
+<pre class="prettyprint lang-css">
+column-count: 4
+</pre>
+</article>
+
+<article>
+	<h3>column-rule</h3>
+	<p>设置对象的列与列之间的边框，参阅border属性。</p>
+<pre class="prettyprint lang-css">
+column-rule: 5px dashed blue
+</pre>
+	<div class="smaller-x" style="-webkit-column-rule:5px dashed blue;-moz-column-rule:5px dashed blue;column-rule:5px dashed blue;-webkit-columns:200px;-moz-columns:200px;columns:200px;-webkit-column-gap:50px;-moz-column-gap:50px;column-gap:50px;color:red">
+		<h6>7.1. The length of columns</h6>
+		<p>What happens when the 'height' property is non-auto? Are column lengths in any way constrained by the 'height' property? Two options seems possible: <br />
+		Similarly, the 'max-height' and 'min-height' properties must be described.
+		Another option is to create 'column-length' property.</p>
+		<h6>7.2. Absolutely positioned elements in columns</h6>
+		<p>What is the desired behaviour when an element in a column is an absolute container (e.g., relatively positioned)? In particular, do its absolutely positioned children break at column boundaries too? A similar question arises for pages and the fact that we don't currently break abs-pos children across page boundaries is a huge source of complaints, so I strongly push for abs-pos children to break at column boundaries, and I'd like as much guidance as possible as to the preferred behaviour. Do consider what happens if the in-flow content fits in N columns but additional columns would be required to fit abs-pos content.</p>
+	</div>
+</article>
+
+<article>
+	<h3>column-gap</h3>
+<pre class="prettyprint lang-css" id="cspre1">
+column-gap: 50px
+</pre>
+	<div class="smaller-x" id="cspp2" style="-webkit-column-rule:5px dashed blue;-moz-column-rule:5px dashed blue;column-rule:5px dashed blue;-webkit-columns:200px;-moz-columns:200px;-o-columns:200px;-webkit-column-gap:50px;-moz-column-gap:50px;-o-column-gap:50px;color:red">
+		<h6>7.1. The length of columns</h6>
+		<p>What happens when the 'height' property is non-auto? Are column lengths in any way constrained by the 'height' property? Two options seems possible: <br />
+		Similarly, the 'max-height' and 'min-height' properties must be described.
+		Another option is to create 'column-length' property.</p>
+		<h6>7.2. Absolutely positioned elements in columns</h6>
+		<p>What is the desired behaviour when an element in a column is an absolute container (e.g., relatively positioned)? In particular, do its absolutely positioned children break at column boundaries too? A similar question arises for pages and the fact that we don't currently break abs-pos children across page boundaries is a huge source of complaints, so I strongly push for abs-pos children to break at column boundaries, and I'd like as much guidance as possible as to the preferred behaviour. Do consider what happens if the in-flow content fits in N columns but additional columns would be required to fit abs-pos content.</p>
+	</div>
+
+	<p class="aligncenter">列间距：<input type="range" max="200" min="0" value="50" id="ecs3" /></p>
+
+<script>
+$("#ecs3").onchange = function (){
+	$("#cspre1 .lit").innerHTML = this.value + "px";
+	$("#cspp2").style.WebkitColumnGap = $("#cspp2").style.MozColumnGap = $("#cspp2").style.columnGap = $("#cspre1").textContent.split(":")[1];
+};
+</script>
+</article>
+
+<article>
+	<h3>column-span</h3>
+<pre class="prettyprint lang-css" id="cspre5">
+column-span: all
+</pre>
+	<div class="smaller-x" style="-webkit-column-rule:5px dashed blue;-moz-column-rule:5px dashed blue;column-rule:5px dashed blue;-webkit-columns:200px;-moz-columns:200px;-o-columns:200px;-webkit-column-gap:50px;-moz-column-gap:50px;-o-column-gap:50px;color:red">
+		<h6>7.1. The length of columns</h6>
+		<p>What happens when the 'height' property is non-auto? Are column lengths in any way constrained by the 'height' property? Two options seems possible: <br />
+		Similarly, the 'max-height' and 'min-height' properties must be described.
+		Another option is to create 'column-length' property.</p>
+		<p id="cspp5" style="background:red;color:#fff;text-align:center;padding:.5em">我是一个大标题</p>
+		<h6>7.2. Absolutely positioned elements in columns</h6>
+		<p>What is the desired behaviour when an element in a column is an absolute container (e.g., relatively positioned)? In particular, do its absolutely positioned children break at column boundaries too? A similar question arises for pages and the fact that we don't currently break abs-pos children across page boundaries is a huge source of complaints, so I strongly push for abs-pos children to break at column boundaries, and I'd like as much guidance as possible as to the preferred behaviour. Do consider what happens if the in-flow content fits in N columns but additional columns would be required to fit abs-pos content.</p>
+	</div>
+	<p class="aligncenter"><label><input type="checkbox" value="all" id="ecs5"/>横跨所有列</label></p>
+
+<script>
+$("#ecs5").onclick = function (){
+	$("#cspre5 .pln").innerHTML = this.checked ? " all" : " none";
+	$("#cspp5").style.WebkitColumnSpan = $("#cspp5").style.MozColumnSpan = $("#cspp5").style.columnSpan = $("#cspre5").textContent.split(":")[1];
+};
+</script>
+</article>
+
+<article>
+	<h3>column-break-before</h3>
+	<p>设置对象之前是否断行。</p>
+	<div class="smaller-x" id="cspp6" style="-webkit-column-rule:5px dashed blue;-moz-column-rule:5px dashed blue;column-rule:5px dashed blue;-webkit-columns:200px;-moz-columns:200px;-o-columns:200px;-webkit-column-gap:50px;-moz-column-gap:50px;-o-column-gap:50px;color:red">
+		<h6>7.1. The length of columns</h6>
+		<p>What happens when the 'height' property is non-auto? Are column lengths in any way constrained by the 'height' property? Two options seems possible: <br />
+		Similarly, the 'max-height' and 'min-height' properties must be described.</p>
+		<h6>7.2. Absolutely positioned elements in columns</h6>
+		<p>What is the desired behaviour when an element in a column is an absolute container?</p>
+		<h6>7.3. Floating elements in columns</h6>
+		<p>When an element that forms a stacking context (e.g. abs-pos with z-index not 'auto', or 'opacity' not 1) breaks vertically, do the pieces together still form a single stacking context? This could get hard to implement in general.</p>
+	</div>
+	<ul class="none-type">
+		<li><label><input type="radio" name="column-break-before" value="auto" checked /><span>auto(默认)</span></label></li>
+		<li><label><input type="radio" name="column-break-before" value="always" /><span>always</span></label></li>
+		<li><label><input type="radio" name="column-break-before" value="avoid" /><span>avoid</span></label></li>
+	</ul>
+<script>
+var elscbb = $all("[name=column-break-before]");
+for(var i=0;i<elscbb.length;i++){
+	elscbb[i].onclick = function (){
+		var hs = $all("#cspp6 h6");
+		for(var i=0;i<hs.length;i++){
+			hs[i].style.WebkitColumnBreakBefore = hs[i].style.MozColumnBreakBefore = hs[i].style.columnBreakBefore = this.value;
+		};
+	}
+}
+</script>
+</article>
+
+<article>
+	<h3>column-break-after</h3>
+	<p>设置对象之后是否断行。</p>
+	<h5>取值：<span class="green">auto</span> | <span class="green">always</span> | <span class="green">avoid</span></h5>
+	<hr />
+	<h3>column-break-inside</h3>
+	<p>设置对象内部是否断行。</p>
+	<h5>取值：<span class="green">auto</span> | <span class="green">avoid</span></h5>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Pseudo-Classes Selectors</small>
+		<h2>伪类选择符</h2>
+	</div>
+</article>
+
+<article>
+<h3>E:nth-child(n)</h3>
+<pre class="prettyprint">
+&lt;ul class=&quot;balls&quot;&gt;
+    &lt;li&gt;1&lt;/li&gt;...&lt;li&gt;10&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<ul class="balls">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li>9</li>
+	<li>10</li>
+</ul>
+<textarea id="selector1" cols="30" rows="10" class="coding">.balls>li:nth-child(n){
+/*
+      border-color: red;
+      background: red;
+      font-weight: 700;
+      color: #fff;
+*/
+}</textarea>
+<script type="text/javascript">
+$("#selector1").oninput = function(){
+	$("#sstyle1").innerHTML = this.value;
+};
+</script>
+</article>
+
+<article>
+<h3>E:nth-last-child(n)</h3>
+<pre class="prettyprint">
+&lt;ul class=&quot;balls&quot;&gt;
+    &lt;li&gt;1&lt;/li&gt;...&lt;li&gt;10&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<ul class="balls"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ul>
+<textarea id="selector2" cols="30" rows="10" class="coding">.balls > li:nth-last-child(n){
+/*
+      border-color: red;
+      background: red;
+      font-weight: 700;
+      color: #fff;
+*/
+}</textarea>
+<script type="text/javascript">
+$("#selector2").oninput = function(){
+	$("#sstyle").innerHTML = this.value;
+};
+</script>
+</article>
+
+<article>
+<h3>E:only-child</h3>
+<pre class="prettyprint lang-css">
+.balls > li:only-child { ... }
+</pre>
+<pre class="prettyprint smaller">
+&lt;ul class=&quot;balls&quot;&gt;
+    &lt;li&gt;1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul class=&quot;balls&quot;&gt;
+    &lt;li&gt;1&lt;/li&gt;&lt;li&gt;2&lt;/li&gt;&lt;li&gt;3&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+<ul class="balls balls2">
+	<li>1</li>
+</ul>
+<div class="clr"></div>
+<ul class="balls balls2">
+	<li>1</li>
+	<li>2</li>
+	<li>3</li>
+</ul>
+</article>
+
+<article>
+<h3>E:first-child</h3>
+<pre class="prettyprint lang-css">
+.balls > li:first-child { ... }
+</pre>
+<ul class="balls f"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ul>
+<br />
+<br />
+<br />
+<hr />
+<h3>E:last-child</h3>
+<pre class="prettyprint lang-css">
+.balls > li:last-child { ... }
+</pre>
+<ul class="balls l"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ul>
+</article>
+
+
+<article>
+<h3>type 系列</h3>
+<div class="test">
+div.test
+<div>div1</div>
+<p>p1</p>
+<div>div2</div>
+<div>div3</div>
+</div>
+<ul class="none-type smaller">
+	<li class="to-build"><label><input type="radio" name="typeselector" value=".test > p:first-of-type{border-color:red}" /><span>.test > p:first-of-type {border-color:red}</span></label></li>
+	<li class="to-build"><label><input type="radio" name="typeselector" value=".test > div:last-of-type{border-color:red}" /><span>.test > div:last-of-type {border-color:red}</span></label></li>
+	<li class="to-build"><label><input type="radio" name="typeselector" value=".test > :only-of-type{border-color:red}" /><span>.test > :only-of-type {border-color:red}</span></label></li>
+	<li class="to-build"><label><input type="radio" name="typeselector" value=".test > div:nth-of-type(2){border-color:red}" /><span>.test > div:nth-of-type(2) {border-color:red}</span></label></li>
+	<li class="to-build"><label><input type="radio" name="typeselector" value=".test > div:nth-last-of-type(3){border-color:red}" /><span>.test > div:nth-last-of-type(3) {border-color:red}</span></label></li>
+</ul>
+<script>
+var elstype = $all("[name=typeselector]");
+for(var i=0;i<elstype.length;i++){
+	elstype[i].onclick = function (){
+		$("#sstyle2").innerHTML = this.value;
+	}
+}
+</script>
+</article>
+
+<article>
+<h3>状态 系列</h3>
+<div class="test">
+<ul class="test2 none-type">
+	<li><input type="checkbox" /><span>启用状态</span></li>
+	<li><input type="checkbox" checked /><span>启用状态</span></li>
+	<li><input type="radio" checked /><span>启用状态</span></li>
+	<li><input type="radio" disabled /><span>禁用状态</span></li>
+	<li><input type="checkbox" disabled /><span>禁用状态</span></li>
+</ul>
+</div>
+<ul class="none-type smaller">
+	<li class="to-build"><label><input type="radio" name="typeselector3" value=".test2 input:enabled + span{color:red}" /><span>input:enabled + span {color:red}</span></label></li>
+	<li class="to-build"><label><input type="radio" name="typeselector3" value=".test2 input:disabled + span{color:red}" /><span>input:disabled + span {color:red}</span></label></li>
+	<li class="to-build"><label><input type="radio" name="typeselector3" value=".test2 input:checked + span{color:red}" /><span>input:checked + span {color:red}</span></label></li>
+</ul>
+<script>
+var elszt = $all("[name=typeselector3]");
+for(var i=0;i<elszt.length;i++){
+	elszt[i].onclick = function (){
+		$("#sstyle3").innerHTML = this.value;
+	}
+}
+</script>
+</article>
+
+<article>
+<h3>E:not()</h3>
+<p>匹配不含有s选择符的元素E。</p>
+<ul class="balls n"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ul>
+<br />
+<br />
+<textarea id="selector9" cols="30" rows="10" class="coding">.balls.n > li:not(sRules){
+/*
+      border-color: red;
+      background: red;
+      font-weight: 700;
+      color: #fff;
+*/
+}</textarea>
+<script type="text/javascript">
+$("#selector9").oninput = function(){
+	$("#sstyle4").innerHTML = this.value;
+};
+</script>
+</article>
+
+<article>
+	<h3>E:root</h3>
+	<p>匹配E元素在文档的根元素。在HTML中，根元素永远是HTML。</p>
+	<hr />
+	<h3>E:empty</h3>
+	<p>匹配没有任何子元素（包括text节点）的元素E。</p>
+	<hr />
+	<h3>E:target</h3>
+	<p>匹配相关URL指向的E元素。</p>
+</article>
+
+<article>
+	<h3>✍该怎么选？</h3>
+	<h5>选择前4个元素</h5>
+	<ul class="balls lt4"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ul>
+	<br />
+<pre class="prettyprint lang-css to-build">
+.balls > li:nth-child(-n+4) { ... }
+</pre>
+	<br />
+	<h5 class="to-build">从第一个开始，选择每第四个</h5>
+	<ul class="balls n4 to-build"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li></ul>
+	<br />
+<pre class="prettyprint lang-css to-build">
+.balls > li:nth-child(4n-3) { ... }
+</pre>
+</article>
+
+
+<article data-section>
+	<div class="box">
+		<small>Units</small>
+		<h2>单位</h2>
+	</div>
+</article>
+
+<article>
+	<h3>长度 <span class="gray">(Length)</span></h3>
+	<dl>
+		<dt>rem</dt><dd>相对长度单位，相对于根元素(即html元素)font-size计算值的倍数。</dd>
+	</dl>
+	<p>html->32px</p>
+	<p style="padding:1em;border:2px solid #999;font-size:.5em">font-size:0.5em <span style="border:2px solid red;font-size:2em">font-size:2em</span></p>
+	<p class="to-build" style="padding:1em;border:2px solid #999;font-size:.5em">font-size:0.5em <span style="border:2px solid red;font-size:2rem">font-size:2rem</span></p>
+</article>
+
+<article>
+	<h3>角度 <span class="gray">(Angel)</span></h3>
+	<p class="green">90deg = 100grad = 0.25turn ≈ 1.570796326794897rad</p>
+	<dl>
+		<dt>deg</dt><dd>度（Degress）。一个圆共360度</dd> 
+		<dt>grad</dt><dd>梯度（Gradians）。一个圆共400梯度</dd>
+		<dt>turn</dt><dd>转、圈（Turns）。一个圆共1圈</dd>
+		<dt>rad</dt><dd>弧度（Radians）。一个圆共2π弧度</dd>
+	</dl>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Transform</small>
+		<h2>转换</h2>
+	</div>
+</article>
+
+<article>
+	<h3>scale()</h3>
+	<h5>取值：<span class="green">&lt;x:number&gt;</span>[,<span class="green">&lt;y:number&gt;</span>]</h5>
+<pre class="prettyprint lang-css exampletf" id="exampletf1">
+scale(1, 1)
+</pre>
+	<p class="aligncenter">X: <input type="range" max="2" min="-2" value="1" step="0.1" id="scalex" /></p>
+	<p class="aligncenter">Y: <input type="range" max="2" min="-2" value="1" step="0.1" id="scaley" /></p>
+
+<script>
+function updateTf() {
+	$("#exampletf1").style.WebkitTransform = $("#exampletf1").style.MozTransform = $("#exampletf1").style.MsTransform = $("#exampletf1").style.OTransform = $("#exampletf1").style.transform = $("#exampletf1").textContent.replace(/\n/g,"");
+};
+$("#scalex").onchange = function (){ $all("#exampletf1 .lit")[0].innerHTML = Number(this.value).toFixed(1); updateTf() };
+$("#scaley").onchange = function (){ $all("#exampletf1 .lit")[1].innerHTML = Number(this.value).toFixed(1); updateTf() };
+</script>
+</article>
+
+<article>
+<h3>scaleX() scaleY()</h3>
+<p>以下三种语法效果一样</p>
+<pre class="prettyprint lang-css">
+transform: scale(2);
+</pre>
+<pre class="prettyprint lang-css">
+transform: scale(2, 2);
+</pre>
+<pre class="prettyprint lang-css">
+transform: scaleX(2) scaleY(2);
+</pre>
+</article>
+
+<article>
+	<h3>translate()</h3>
+	<h5>取值：<span class="green">&lt;x:length&gt;</span>[,<span class="green">&lt;y:length&gt;</span>]</h5>
+<pre class="prettyprint lang-css exampletf" id="exampletf2">
+translate(0, 0)
+</pre>
+	<p class="aligncenter">X: <input type="range" max="100" min="-100" value="0" id="translatex" /></p>
+	<p class="aligncenter">Y: <input type="range" max="100" min="-100" value="0" id="translatey" /></p>
+
+<script>
+function updateTf1() {
+	$("#exampletf2").style.WebkitTransform = $("#exampletf2").style.MozTransform = $("#exampletf2").style.MsTransform = $("#exampletf2").style.OTransform = $("#exampletf2").style.transform = $("#exampletf2").textContent.replace(/\n/g,"");
+};
+$("#translatex").onchange = function (){ $all("#exampletf2 .lit")[0].innerHTML = this.value + "px"; updateTf1() };
+$("#translatey").onchange = function (){ $all("#exampletf2 .lit")[1].innerHTML = this.value + "%"; updateTf1() };
+</script>
+</article>
+
+<article>
+<h3>translateX() translateY()</h3>
+<p>以下两种语法效果一样</p>
+<pre class="prettyprint lang-css">
+transform: translate(100px, 100%);
+</pre>
+<pre class="prettyprint lang-css">
+transform: translateX(100px) translateY(100%);
+</pre>
+<hr />
+<pre class="prettyprint lang-css">
+transform: translate(100%);
+</pre>
+</article>
+
+<article>
+	<h3>skew()</h3>
+	<h5>取值：<span class="green">&lt;x:angel&gt;</span>[,<span class="green">&lt;y:angel&gt;</span>]</h5>
+<pre class="prettyprint lang-css exampletf" id="exampletf3">
+skew(0, 0)
+</pre>
+	<p class="aligncenter">X: <input type="range" max="100" min="-100" value="0" id="skewx" /></p>
+	<p class="aligncenter">Y: <input type="range" max="100" min="-100" value="0" id="skewy" /></p>
+
+<script>
+function updateTf2() {
+	$("#exampletf3").style.WebkitTransform = $("#exampletf3").style.MozTransform = $("#exampletf3").style.MsTransform = $("#exampletf3").style.OTransform = $("#exampletf3").style.transform = $("#exampletf3").textContent.replace(/\n/g,"");
+};
+$("#skewx").onchange = function (){ $all("#exampletf3 .lit")[0].innerHTML = this.value + "deg"; updateTf2() };
+$("#skewy").onchange = function (){ $all("#exampletf3 .lit")[1].innerHTML = this.value + "deg"; updateTf2() };
+</script>
+</article>
+
+<article>
+<h3>skewX() skewY()</h3>
+<p>以下两种语法效果一样</p>
+<pre class="prettyprint lang-css">
+transform: skew(100deg, 100deg);
+</pre>
+<pre class="prettyprint lang-css">
+transform: skewX(100deg) skewY(100deg);
+</pre>
+<hr />
+<pre class="prettyprint lang-css">
+transform: skew(100deg);
+</pre>
+</article>
+
+<article>
+	<h3>rotate()</h3>
+	<h5>取值：<span class="green">&lt;angel&gt;</span></h5>
+<pre class="prettyprint lang-css exampletf" id="exampletf0">
+rotate(0)
+</pre>
+	<p class="aligncenter">Angel: <input type="range" max="360" min="-360" value="0" id="rotate" /></p>
+
+<script>
+function updateTf0() {
+	$("#exampletf0").style.WebkitTransform = $("#exampletf0").style.MozTransform = $("#exampletf0").style.MsTransform = $("#exampletf0").style.OTransform = $("#exampletf0").style.transform = $("#exampletf0").textContent.replace(/\n/g,"");
+};
+$("#rotate").onchange = function (){ $("#exampletf0 .lit").innerHTML = this.value + "deg"; updateTf0() };
+</script>
+</article>
+
+<article>
+	<h3>matrix()</h3>
+	<h5>取值：<span class="green">&lt;number&gt;</span>,<span class="green">&lt;number&gt;</span>,<span class="green">&lt;number&gt;</span>,<span class="green">&lt;number&gt;</span>,<span class="green">&lt;number&gt;</span>,<span class="green">&lt;number&gt;</span></h5>
+<p>矩阵。。。</p>
+</article>
+
+<article>
+	<h3>transform-origin</h3>
+	<h5>取值：x: <span class="green">&lt;percentage&gt;</span> | <span class="green">&lt;length&gt;</span> | <span class="green">left</span> | <span class="green">center</span> | <span class="green">right</span>
+<br />　　　y: <span class="green">&lt;percentage&gt;</span> | <span class="green">&lt;length&gt;</span> | <span class="green">top</span> | <span class="green">center</span> | <span class="green">bottom</span></h5>
+<pre class="prettyprint lang-css">transfarm: scale(1.5);</pre>
+<table>
+	<tr>
+		<th width="33%">50% 50%(默认)</th>
+		<th width="33%">top left</th>
+		<th width="33%">bottom center</th>
+	</tr>
+	<tr height="270px">
+		<td style="background:-webkit-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:-moz-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:-o-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:linear-gradient(#2E79BB,#2E79BB) center no-repeat;background-size:100px 100px">
+			<div class="to-build">
+				<div style="-webkit-transform:scale(1.5);-moz-transform:scale(1.5);transform:scale(1.5);width:100px;height:100px;background:#2E79BB;margin:0 auto;-webkit-transform-origin:50% 50%;-moz-transform-origin:50% 50%;transform-origin:50% 50%;opacity:.7"></div>
+			</div>
+		</td>
+		<td style="background:-webkit-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:-moz-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:-o-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:linear-gradient(#2E79BB,#2E79BB) center no-repeat;background-size:100px 100px">
+			<div class="to-build">
+				<div style="-webkit-transform:scale(1.5);-moz-transform:scale(1.5);transform:scale(1.5);width:100px;height:100px;background:#2E79BB;margin:0 auto;-webkit-transform-origin:top left;-moz-transform-origin:top left;transform-origin:top left;opacity:.7"></div>
+			</div>
+		</td>
+		<td style="background:-webkit-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:-moz-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:-o-linear-gradient(#2E79BB,#2E79BB) center no-repeat;background:linear-gradient(#2E79BB,#2E79BB) center no-repeat;background-size:100px 100px">
+			<div class="to-build">
+				<div style="-webkit-transform:scale(1.5);-moz-transform:scale(1.5);transform:scale(1.5);width:100px;height:100px;background:#2E79BB;margin:0 auto;-webkit-transform-origin:bottom center;-moz-transform-origin:bottom center;transform-origin:bottom center;opacity:.7"></div>
+			</div>
+		</td>
+	</tr>
+</table>
+</article>
+
+<article>
+	<h3>transform语法</h3>
+<pre class="prettyprint lang-css">
+transform: rotate(30deg) scale(1.5) skew(10deg, 50deg);
+</pre>
+</article>
+
+
+<article data-section>
+	<div class="box">
+		<small>Transition</small>
+		<h2>过渡</h2>
+	</div>
+</article>
+
+<article>
+<h3>transition</h3>
+<pre class="prettyprint lang-css">
+div {
+   transition: -webkit-transform ease-in .5s;
+}
+div:hover {
+   -webkit-transform: scale(2);
+}
+</pre>
+<div class="examplegd" id="examplegd1" style="margin:0 auto"></div>
+</article>
+
+<article>
+<h3>transition-property</h3>
+<p>设置对象中的参与过渡的属性。</p>
+<pre class="prettyprint lang-css">
+transition-property: all; /*默认*/
+transition-property: none;
+transition-property: background-color;
+transition-property: background-color, height, width;
+</pre>
+<p class="source"><a href="http://www.w3.org/TR/css3-transitions/#animatable-properties-">~所有动画属性列表</a></p>
+</article>
+
+<article>
+<h3>transition-duration</h3>
+<p>设置对象过渡的持续时间。</p>
+<pre class="prettyprint lang-css">
+transition-duration: 2s;
+transition-duration: 4000ms;
+transition-duration: 4000ms, 8000ms;
+</pre>
+</article>
+
+<article>
+<h3>transition-timing-function</h3>
+<p>设置对象中过渡的类型。</p>
+<div class="gdtf">
+<table>
+<tr>
+	<td width="150px" class="smaller">ease(默认)</td>
+	<td><div class="examplegd" style="-webkit-transition-timing-function:ease;-moz-transition-timing-function:ease;-o-transition-timing-function:ease;transition-timing-function:ease;"></div></td>
+</tr>
+<tr>
+	<td>linear</td>
+	<td><div class="examplegd" style="-webkit-transition-timing-function:linear;-moz-transition-timing-function:linear;-o-transition-timing-function:linear;transition-timing-function:linear;"></div></td>
+</tr>
+<tr>
+	<td>ease-in</td>
+	<td><div class="examplegd" style="-webkit-transition-timing-function:ease-in;-moz-transition-timing-function:ease-in;-o-transition-timing-function:ease-in;transition-timing-function:ease-in;"></div></td>
+</tr>
+<tr>
+	<td>ease-out</td>
+	<td><div class="examplegd" style="-webkit-transition-timing-function:ease-out;-moz-transition-timing-function:ease-out;-o-transition-timing-function:ease-out;transition-timing-function:ease-out;"></div></td>
+</tr>
+<tr>
+	<td class="smaller">ease-in-out</td>
+	<td><div class="examplegd" style="-webkit-transition-timing-function:ease-in-out;-moz-transition-timing-function:ease-in-out;-o-transition-timing-function:ease-in-out;transition-timing-function:ease-in-out;"></div></td>
+</tr>
+</table>
+</div>
+</article>
+
+<article>
+	<h3>transition-timing-function</h3>
+	<h5>取值：<span class="green">cubic-bezier(P1x, P1y, P2x, P1y)</span></h5>
+	<p>ease-in-out： 由慢到快再到慢→贝塞尔曲线(0.42, 0, 0.58, 1.0) </p>
+	<div class="aligncenter"><img src="res/cubic-bezier.png" alt="" /></div>
+	<div class="gdtf">
+		<div class="examplegd" style="-webkit-transition-timing-function:cubic-bezier(0.2,0.4,0.8,0.4);-moz-transition-timing-function:ease-out;-o-transition-timing-function:ease-out;transition-timing-function:ease-out;"></div>
+	</div>
+</article>
+
+<article>
+	<h3>transition-delay</h3>
+	<p>设置对象延迟过渡的时间。</p>
+	<div class="gdtf">
+		<table>
+			<tr>
+				<td width="150px">0(默认)</td>
+				<td><div class="examplegd"></div></td>
+			</tr>
+			<tr>
+				<td>1s</td>
+				<td><div class="examplegd" style="-webkit-transition-delay:1s;-moz-transition-delay:1s;-o-transition-delay:1s;transition-delay:1s"></div></td>
+			</tr>
+			<tr>
+				<td>2000ms</td>
+				<td><div class="examplegd" style="-webkit-transition-delay:2000ms;-moz-transition-delay:2000ms;-o-transition-delay:2000ms;transition-delay:2000ms"></div></td>
+			</tr>
+			<tr>
+				<td>-3s</td>
+				<td><div class="examplegd" style="-webkit-transition-delay:-3s;-moz-transition-delay:-3s;-o-transition-delay:-3s;transition-delay:-3s"></div></td>
+			</tr>
+		</table>
+	</div>
+</article>
+
+<article>
+<h3>transition</h3>
+<p>复合语法</p>
+<pre class="prettyprint lang-css">
+transition: background-color 3s linear 1s;
+transition: 4s ease-in-out;
+transition: 5s;
+</pre>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>Animation</small>
+		<h2>动画</h2>
+	</div>
+</article>
+
+<article>
+<h3>animation</h3>
+<pre class="prettyprint lang-css">
+div:hover i {
+    animation: loading 3s ease-out infinite
+}
+@keyframes loading{
+    0% { width: 0 }
+    100% { width: 100% }
+}
+</pre>
+<div class="exampledh"><i></i></div>
+<p class="aligncenter">↑ 鼠标移上去 ↑</p>
+</article>
+
+<article>
+	<h3>animation 独立属性</h3>
+<pre class="prettyprint lang-css">
+div {
+    animation: name 3s ease 1s 3 alternate;
+}
+</pre>
+	<ul>
+		<li>animation-name：<span class="red">name</span>（对应keyframes的名称）</li>
+		<li>animation-duration：<span class="red">3s</span>（持续时间）</li>
+		<li>animation-timing-function：<span class="red">ease</span>（过渡类型）</li>
+		<li>animation-delay：<span class="red">1s</span>（延迟时间）</li>
+		<li>animation-iteration-count：<span class="red">3</span>（循环次数）|| infinite</li>
+		<li>animation-direction：<span class="red">alternate</span>（反向运动）|| normal</li>
+	</ul>
+</article>
+
+<article data-section>
+	<div class="box">
+		<small>that's all</small>
+		<h2>Thanks :)</h2>
+	</div>
+</article>
+
+</section>
+
+<div id="prev">&lsaquo;</div>
+<div id="next">&rsaquo;</div>
+<footer id="footer">
+	<div id="gethelp">?</div>
+	<div id="navigation">
+		幻灯片 <b class="current">0</b> / <span class="total">0</span> <span class="split">|</span> <span class="droparrow">&#9660</span>
+		<nav id="goto">
+			<div class="scroll"><ol></ol></div>
+			<div class="overbg"></div>
+			<div class="arrow"><i></i></div>
+		</nav>
+	</div>
+	<div id="progressbar"><i></i></div>
+</footer>
+
+<div id="help">
+	<div class="bg"></div>
+	<div class="main">
+		<h4>快捷键</h4>
+		<dl>
+			<dt>铺满窗口：</dt><dd>W</dd>
+			<dt>窗口适配：</dt><dd>S</dd>
+			<dt>全屏模式：</dt><dd>F</dd>
+			<dt>切换主题：</dt><dd>T</dd>
+			<dt>上一页：</dt><dd>↑ / ← / P / PageDown</dd>
+			<dt>下一页：</dt><dd>↓ / → / N / PageUp / Space</dd>
+			<dt>第一页：</dt><dd>Home</dd>
+			<dt>最后一页：</dt><dd>End</dd>
+			<dt>画笔：</dt><dd>Ctrl+鼠标左键</dd>
+			<dt>荧光笔：</dt><dd>Alt+鼠标左键</dd>
+		</dl>
+		<div class="gray aligncenter clr">点击任意区域退出</div>
+	</div>
+</div>
+
+<div id="loading"><div class="bar"><i></i></div>加载中...</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
